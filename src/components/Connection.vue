@@ -55,7 +55,6 @@ export default {
     z-index: 0;
     width: 100vw;
     height: 100vh;
-    background: whitesmoke;
     p {
         text-align: center;
         font-size: 1.3em;

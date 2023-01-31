@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 import layout from "../views/Layout.vue";
 import connection from "../components/Connection.vue";
 import dashboard from "@/components/Dashboard.vue";
@@ -18,16 +18,17 @@ const routes = [
     children: [
       { path: "login", name: "Connection", component: connection },
       {
-        path: "", name: "Dashboard", component: dashboard,
-        children: [
+        path: "dashboard", name: "Dashboard", component: dashboard, children: [
           { path: "", name: "Welcome", component: home },
           { path: "stages", name: "Stages", component: internships },
-          { path: "admins", name: "Admin", component: admin },
           { path: "inscriptions", name: "Inscriptions", component: registration },
-          { path: "parametres", name: "Paramètres", component: params }
+          { path: "admins", name: "Admin", component: admin },
+          { path: "parametres", name: "Paramètres", component: params },
         ]
       },
-      { path: ':pathMatch(.*)*', redirect: '/' }
+
+
+      { path: ':pathMatch(.*)*', redirect: 'dashboard' }
     ]
   },
 ];
@@ -38,11 +39,14 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (to.matched[1].path !== '/login') guard();
-
+  if (to.path === '/') {
+    if (to.matched[0].path !== '/login') guard();
+  }
+  else {
+    if (to.matched[1].path !== '/login') guard();
+  }
 
   next();
-
 });
 
 export default router;

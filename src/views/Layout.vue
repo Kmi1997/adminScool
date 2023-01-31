@@ -1,25 +1,25 @@
 <template>
     <nav id="app-bar" class="navbar navbar-expand-sm">
-        <router-link class="nav-link" to="/">
-        <a id="title" class="text-dark navbar-brand">s'Cool Family</a>
-</router-link>
+        <router-link class="nav-link" to="dashboard">
+            <a id="title" class="text-dark navbar-brand">s'Cool Family</a>
+        </router-link>
         <button :disabled="!connected" class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                  </button>
+                        <span class="navbar-toggler-icon"></span>
+                      </button>
     
         <div class="collapse navbar-collapse" id="navbarSupportedContent" v-if="connected">
             <ul class="navbar-nav text-center">
                 <li class="nav-item active">
-                    <router-link class="nav-link" to="/stages">Stages <img class="material-symbols-outlined" src="../assets/edit.png"></router-link>
+                    <router-link class="nav-link" to="/dashboard/stages">Stages <img class="material-symbols-outlined" src="../assets/edit.png"></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/inscriptions">Inscriptions<img class="material-symbols-outlined" src="../assets/boy.png"></router-link>
+                    <router-link class="nav-link" to="/dashboard/inscriptions">Inscriptions<img class="material-symbols-outlined" src="../assets/boy.png"></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/admins">Administrateurs <img class="material-symbols-outlined" src="../assets/keys.png"></router-link>
+                    <router-link class="nav-link" to="/dashboard/admins">Administrateurs <img class="material-symbols-outlined" src="../assets/keys.png"></router-link>
                 </li>
                 <li class="nav-item">
-                    <router-link class="nav-link" to="/parametres"> Paramètres <img class="material-symbols-outlined" src="../assets/settings.png"></router-link>
+                    <router-link class="nav-link" to="/dashboard/parametres"> Paramètres <img class="material-symbols-outlined" src="../assets/settings.png"></router-link>
                 </li>
                 <li class="nav-item">
                     <div class="nav-link logout" @click="logout">Logout <img class="material-symbols-outlined" src="../assets/logout.png"></div>
@@ -35,14 +35,16 @@
 <script>
 // @ is an alias to /src
 
+
 export default {
+
     data() {
         return {
-            connected: false
+            connected: false,
         }
     },
 
-    name: "Layout-view",
+    name: "Layout",
 
     mounted() {
         this.isConnected();
@@ -64,7 +66,7 @@ export default {
         logout() {
             localStorage.removeItem('token');
             this.$router.push('/login');
-        }
+        },
     }
 };
 </script>
@@ -136,5 +138,9 @@ h2 {
 
 .logout {
     cursor: pointer;
+}
+
+.HideLink {
+    pointer-events: none;
 }
 </style>
