@@ -22,8 +22,9 @@ Axios.interceptors.response.use(response => {
         if (error.response.status == 401) {
             localStorage.removeItem('token');
             router.push('/');
-            alert(error.response.data.message);
+            return;
         }
+        throw error;
     });
 
 

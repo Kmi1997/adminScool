@@ -27,9 +27,13 @@
         </tbody>
     </table>
     
-    <div id="error" v-if="isError && !showCard">
-        <p> {{ errorToSend }}</p>
+    <div id="mainError" v-if="tabErrors.length > 0 && showCardError">
+        <div id="error">
+            <p v-for="error in tabErrors"> {{ error }}</p>
+        <button @click="closeError" class="btn btn-secondary">Quitter</button>
+        </div>
     </div>
+    
     
     <!-- add -->
     <div class="card mainCard" v-if="showCard">
@@ -108,7 +112,7 @@
     
     <div class="card mainCard" v-if="showCardDel">
         <div class="card-body">
-           
+    
             <h6> Veux-tu vraiment supprimer ce stage? </h6>
             <button @click="destroy(idToDelete)" class="btn btn-success">Valider</button>
             <button @click="exitDelete" class="btn btn-success">Annuler</button>
@@ -143,9 +147,10 @@ export default {
             },
             showCard: false,
             errorToSend: "Données de formulaire inexactes",
-            isError: false,
+            tabErrors: [],
             showCardUp: false,
             showCardDel: false,
+            showCardError: false,
             thisShip: [],
             idToDelete: 0
         };
@@ -158,26 +163,21 @@ export default {
                 });
             });
         },
+
         addInternship(toSend) {
-            console.log(toSend);
-            internshipService
-                .addInternship(toSend)
-                .then((x) => {
-                    if (x == undefined) {
-                        this.showCard = !this.showCard;
 
-                        this.isError = true;
-                    } else {
-                        this.showCard = !this.showCard;
-                        this.tabDatas = [];
-                        this.getAll();
-                        this.isError = false;
-                    };
+            internshipService.addInternship(toSend)
+                .then(() => {
+                    this.tabDatas = [];
+                    this.showCard = !this.showCard;
+                    this.getAll();
                 })
-                .catch((error) => {
-                    console.log(error);
-                });
+                .catch(error => {
 
+                    this.showCard = !this.showCard;
+                    this.showCardError = !this.showCardError;
+                    this.tabErrors = error.response.data.errors
+                });
         },
         showCardFn() {
             this.showCard = !this.showCard;
@@ -211,24 +211,27 @@ export default {
         },
 
         destroy(id) {
-            internshipService.destroy(id).then(message => {
-                this.tabDatas = [];
-                this.getAll();
-                this.showCardDel = !this.showCardDel;
+            internshipService.destroy(id).then(() => {
+                    this.tabDatas = [];
+                    this.getAll();
+                    this.showCardDel = !this.showCardDel;
 
-            })
-            .catch(error => console.log(error))
+                })
+                .catch(error => console.log(error))
         },
 
         deleting(event) {
 
             this.idToDelete = event.target.parentElement.id;
-            
+
             if (!this.showCardDel) {
                 this.showCardDel = !this.showCardDel;
             };
-
         },
+
+        closeError() {
+            this.showCardError = false;
+        }
     }
 }
 </script>
@@ -246,19 +249,33 @@ table {
     }
 }
 
-#error {
+#mainError{
     z-index: 11;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    
+}
+
+
+#error {
+    
     position: absolute;
     top: 30vh;
     background: linear-gradient(135deg, #ffbe0b 0%, #ff5100 100%);
     border-radius: 5px;
     box-shadow: 2px 2px 8px grey;
-    width: 40%;
-    margin-left: 30%;
+    display: inline-block;
+
     p {
         color: black;
-        padding: 3vw;
-        font-size: 1.8em;
+        padding: 1vw;
+        font-size: 1em;
+    }
+    button{
+        width: 20%;
+        margin-left:40%;
     }
 }
 
