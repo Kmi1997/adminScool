@@ -20,7 +20,10 @@ export default {
   props: {},
   methods: {
     welcome(){
-      accountService.getThisAdmin().then(x => this.hello = x.data.username);
+      
+      accountService.getThisAdmin().then(x => {
+        this.hello = x.data.username
+        console.log(x)});
     }
   },
 };

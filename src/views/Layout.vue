@@ -1,6 +1,6 @@
 <template>
     <nav id="app-bar" class="navbar navbar-expand-sm">
-        <router-link class="nav-link" to="dashboard">
+        <router-link class="nav-link" to="/dashboard">
             <a id="title" class="text-dark navbar-brand">s'Cool Family</a>
         </router-link>
         <button :disabled="!connected" class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

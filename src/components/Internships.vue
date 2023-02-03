@@ -9,7 +9,6 @@
                 <th scope="col">Places</th>
                 <th scope="col">Prix</th>
                 <th scope="col">À partir de</th>
-    
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -146,7 +145,6 @@ export default {
                 price: ""
             },
             showCard: false,
-            errorToSend: "Données de formulaire inexactes",
             tabErrors: [],
             showCardUp: false,
             showCardDel: false,
@@ -238,65 +236,63 @@ export default {
 
 <style lang="scss" scoped>
 table {
-    img {
-        width: 25px;
-        visibility: hidden;
-    }
-    tr:hover {
-        img {
-            visibility: visible;
-        }
-    }
+  img {
+      width: 25px;
+      visibility: hidden;
+  }
+  tr:hover {
+      img {
+          visibility: visible;
+      }
+  }
 }
-
 #mainError{
-    z-index: 11;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    
+  z-index: 11;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  
 }
-
 
 #error {
-    
-    position: absolute;
-    top: 30vh;
-    background: linear-gradient(135deg, #ffbe0b 0%, #ff5100 100%);
-    border-radius: 5px;
-    box-shadow: 2px 2px 8px grey;
-    display: inline-block;
+  
+  position: absolute;
+  top: 10vh;
+  background: linear-gradient(135deg, #ffbe0b 0%, #ff5100 100%);
+  border-radius: 5px;
+  box-shadow: 2px 2px 8px grey;
+  display: inline-block;
 
-    p {
-        color: black;
-        padding: 1vw;
-        font-size: 1em;
-    }
-    button{
-        width: 20%;
-        margin-left:40%;
-    }
+  p {
+      color: black;
+      padding: 1vw;
+      font-size: 1em;
+  }
+  button{
+      width: 20%;
+      margin-left:40%;
+  }
 }
 
 #add {
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .mainCard {
-    z-index: 11;
-    position: absolute;
-    top: 20vh;
-    left: 35vw;
-    box-shadow: 3px 2px 8px grey;
-    width: 400px;
-    background: linear-gradient(135deg, #ff5100, #ffbe0b 100% 0%);
-    button {
-        width: 100%;
-        margin-top: 1vh;
-    }
+  z-index: 11;
+  position: absolute;
+  top: 20vh;
+  left: 35vw;
+  box-shadow: 3px 2px 8px grey;
+  width: 400px;
+  background: linear-gradient(135deg, #ff5100, #ffbe0b 100% 0%);
+  button {
+      width: 100%;
+      margin-top: 1vh;
+  }
 }
 </style>
