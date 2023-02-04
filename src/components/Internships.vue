@@ -245,6 +245,9 @@ table {
           visibility: visible;
       }
   }
+  thead:first-child{
+      background-color: rgba(198, 192, 192, 0.87);
+    }
 }
 #mainError{
   z-index: 11;

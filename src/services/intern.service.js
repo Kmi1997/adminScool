@@ -9,7 +9,7 @@ const addIntern = (data) => {
 };
 
 const update = (id, data) => {
-    return Axios.patch(`/intern/updating/${id}`, data);
+    return Axios.patch(`/intern/update/${id}`, data);
 };
 
 const destroy = (id) => {
