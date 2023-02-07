@@ -199,6 +199,7 @@ export default {
                     console.log(res);
                     if (res.status === 201) {
                         this.showCardUp = !this.showCardUp;
+
                     };
                 })
                 .catch(error => console.log(error.message));

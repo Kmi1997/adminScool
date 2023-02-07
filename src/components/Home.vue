@@ -23,7 +23,6 @@ export default {
 
             accountService.getThisAdmin().then(x => {
                 this.hello = x.data.username
-                console.log(x)
             });
         }
     },
@@ -33,6 +32,7 @@ export default {
 <style lang="scss" scoped>
 h2 {
     font-size: 9em;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
     text-align: center;
     padding-top: 20vh;
 }

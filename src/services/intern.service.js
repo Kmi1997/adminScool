@@ -13,7 +13,7 @@ const update = (id, data) => {
 };
 
 const destroy = (id) => {
-    return Axios.delete(`intern/delete/${id}`);
+    return Axios.delete(`intern/destroy/${id}`);
 };
 
 export const internService = {

@@ -22,7 +22,7 @@ Axios.interceptors.response.use(response => {
         if (error.response.status == 401) {
             localStorage.removeItem('token');
             router.push('/');
-            return;
+            return error.response.data.message;
         }
         throw error;
     });

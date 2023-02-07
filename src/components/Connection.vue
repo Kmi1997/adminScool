@@ -23,7 +23,7 @@ import { accountService } from '@/services/connection.service';
 export default {
     name: 'Connection',
     mounted() {
-        if(localStorage.getItem('token')) {
+        if (localStorage.getItem('token')) {
             this.$router.push('/');
         }
     },
@@ -40,11 +40,14 @@ export default {
         login() {
             accountService.connection(this.user)
                 .then(data => {
-
-                    localStorage.setItem('token', data.data.token);
-                    this.$router.push('/dashboard');
-                })
-                .catch(err => console.log(err.response.data.message))
+                    if (typeof data === "string") {
+                        this.unauthorized = data;
+                    } 
+                    else {
+                        localStorage.setItem('token', data.data.token);
+                        this.$router.push('/dashboard');
+                    }
+                }).catch(err => console.log(err))
         }
     }
 };
